@@ -1,28 +1,26 @@
-# This file generates the GitHub Actions matrix
-# For simple board + shield combinations, add them
-# to the top level board and shield arrays, for more
-# control, add individual board + shield combinations to
-# the `include` property, e.g:
+# This file generates the GitHub Actions matrix.
 #
-# board: [ "nice_nano_v2" ]
-# shield: [ "corne_left", "corne_right" ]
-# include:
-#   - board: bdn9_rev2
-#   - board: nice_nano_v2
-#     shield: reviung41
-#
+# Dongle-as-central setup (Prospector):
+#   - The Prospector dongle (XIAO nRF52840) is the CENTRAL and holds the keymap.
+#   - Both Corne halves are PERIPHERALS (forced via cmake-args).
+#   - Flash settings_reset to ALL three devices first, then the real firmware.
 ---
 include:
+  # --- Prospector dongle = central (holds the keymap + Studio) ---
+  - board: xiao_ble//zmk
+    shield: corne_dongle prospector_adapter
+    snippet: studio-rpc-usb-uart
+
+  # --- Corne halves = peripherals ---
   - board: nice_nano_v2
     shield: corne_left nice_oled
-    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
   - board: nice_nano_v2
     shield: corne_right nice_oled
+    cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
 
-  # - board: nice_nano_v2
-  #   shield: corne_left nice_view_adapter nice_view_custom
-  #   snippet: studio-rpc-usb-uart
-  # - board: nice_nano_v2
-  #   shield: corne_right nice_view_adapter nice_view_custom
+  # --- Reset firmware (flash first, to clear old pairings) ---
   - board: nice_nano_v2
+    shield: settings_reset
+  - board: xiao_ble//zmk
     shield: settings_reset
