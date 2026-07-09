@@ -4,20 +4,23 @@ This config builds the Corne as a **3-piece split**: the Prospector dongle
 (Seeed XIAO nRF52840) is the **central** and holds the keymap; both Corne halves
 are **peripherals**.
 
-All three devices are built from this one repo on ZMK `main`, using the
-Prospector module's `feat/new-status-screens` branch (Zephyr 4.1 / ZMK main).
+All three devices are built from this one repo, pinned to the stable ZMK **v0.3**
+release (Zephyr 3.5), using the Prospector module's `main` branch. The CI build
+workflow (`.github/workflows/build.yml`) is pinned to `build-user-config.yml@v0.3`
+to match — keep these in sync if you ever bump the ZMK version.
 
 ## What GitHub Actions builds
 
-Pushing this repo produces these `.uf2` artifacts:
+Pushing to `config/**` (or running the workflow manually) produces a single
+`firmware` artifact zip containing these `.uf2` files:
 
-| Artifact | Board | Flash to |
+| .uf2 | Board | Flash to |
 | --- | --- | --- |
-| `clover_dongle prospector_adapter` | `xiao_ble` | Prospector dongle |
-| `corne_left`  | `nice_nano_v2` | Left half |
-| `corne_right` | `nice_nano_v2` | Right half |
+| `clover_dongle prospector_adapter` | `seeeduino_xiao_ble` | Prospector dongle |
+| `corne_left nice_oled`  | `nice_nano_v2` | Left half |
+| `corne_right nice_oled` | `nice_nano_v2` | Right half |
 | `settings_reset` | `nice_nano_v2` | Both halves (reset) |
-| `settings_reset` | `xiao_ble` | Dongle (reset) |
+| `settings_reset` | `seeeduino_xiao_ble` | Dongle (reset) |
 
 ## Flashing procedure (order matters)
 
@@ -28,7 +31,7 @@ clear old bonds first or they won't pair to the dongle.
    button → a USB drive appears: `NICENANO` for the halves, `XIAO-SENSE` for the
    dongle) and drag the matching `settings_reset` `.uf2` onto it.
    - Halves → `settings_reset` (nice_nano_v2)
-   - Dongle → `settings_reset` (xiao_ble)
+   - Dongle → `settings_reset` (seeeduino_xiao_ble)
 2. **Flash real firmware.** Reset into bootloader again and drag:
    - Dongle → `clover_dongle prospector_adapter` `.uf2`
    - Left half → `corne_left` `.uf2`
