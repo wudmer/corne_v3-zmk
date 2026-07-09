@@ -1,4 +1,4 @@
-if SHIELD_CORNE_DONGLE
+if SHIELD_CLOVER_DONGLE
 
 # Max 16 characters
 config ZMK_KEYBOARD_NAME
