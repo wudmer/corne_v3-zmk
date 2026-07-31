@@ -7,16 +7,21 @@
 ---
 include:
   # --- Prospector dongle = central (holds the keymap + Studio) ---
+  # TEMP DEBUG: snippet swapped studio-rpc-usb-uart -> zmk-usb-logging so we can
+  # read serial logs. Only one snippet can be passed, and Studio needs its own.
   - board: seeeduino_xiao_ble
     shield: clover_dongle prospector_adapter
-    snippet: studio-rpc-usb-uart
+    snippet: zmk-usb-logging
 
   # --- Corne halves = peripherals ---
+  # TEMP DEBUG: logging enabled to confirm whether kscan sees key presses.
   - board: nice_nano_v2
     shield: corne_left
+    snippet: zmk-usb-logging
     cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
   - board: nice_nano_v2
     shield: corne_right
+    snippet: zmk-usb-logging
     cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
 
   # --- Reset firmware (flash first, to clear old pairings) ---
