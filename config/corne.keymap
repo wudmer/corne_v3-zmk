@@ -1,3 +1,21 @@
+/*
+ * LAYER ORDER MATTERS. ZMK resolves a key press from the highest active layer
+ * downwards, stopping at the first layer with a non-transparent binding. An
+ * alternate base layer (colemak) must therefore sit BELOW the momentary layers,
+ * otherwise it shadows them and every `&lt`/`&to` becomes unreachable -- which
+ * previously made it impossible to leave colemak (and left colemak with no
+ * number/symbol/arrow layers at all).
+ *
+ *   0 qwerty   (default base)
+ *   1 colemak  (alternate base)
+ *   2 lower
+ *   3 upper
+ *   4 extras
+ *
+ * Keep in sync with clover_dongle.keymap (the keymap actually flashed to the
+ * dongle); that copy replaces the RGB / ext-power bindings with `&trans`.
+ */
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
@@ -30,15 +48,27 @@
         compatible = "zmk,keymap";
 
         qwerty {
+            display-name = "QWERTY";
             bindings = <
 &tab_esc                 &kp Q           &kp W           &kp E         &kp R             &kp T         &kp Y        &kp U         &kp I          &kp O            &kp P               &kp BACKSPACE
 &kp LCTRL                &hm LEFT_GUI A  &hm LEFT_ALT S  &hm LCTRL D   &hm LEFT_SHIFT F  &kp G         &kp H        &hm RSHIFT J  &hm RCTRL K    &hm RIGHT_ALT L  &hm RGUI SEMICOLON  &kp SQT
 &mt LEFT_SHIFT CAPSLOCK  &kp Z           &kp X           &kp C         &kp V             &kp B         &kp N        &kp M         &kp COMMA      &kp DOT          &kp FSLH            &kp RIGHT_SHIFT
-                                                         &kp LEFT_GUI  &lt 2 SPACE       &lt 3 DELETE  &lt 2 ENTER  &lt 1 SPACE   &kp RIGHT_ALT
+                                                         &kp LEFT_GUI  &lt 3 SPACE       &lt 4 DELETE  &lt 3 ENTER  &lt 2 SPACE   &kp RIGHT_ALT
+            >;
+        };
+
+        colemak {
+            display-name = "Colemak";
+            bindings = <
+&tab_esc                 &kp Q           &kp W           &kp F               &kp P             &kp G         &kp J        &kp L              &kp U                &kp Y            &kp SEMICOLON    &kp BACKSPACE
+&kp LCTRL                &hm LEFT_GUI A  &hm LEFT_ALT R  &hm LEFT_CONTROL S  &hm LEFT_SHIFT T  &kp D         &kp H        &hm RIGHT_SHIFT N  &hm RIGHT_CONTROL E  &hm RIGHT_ALT I  &hm RIGHT_GUI O  &kp SQT
+&mt LEFT_SHIFT CAPSLOCK  &kp Z           &kp X           &kp C               &kp V             &kp B         &kp K        &kp M              &kp COMMA            &kp DOT          &kp FSLH         &kp RIGHT_SHIFT
+                                                         &kp LEFT_GUI        &lt 3 SPACE       &lt 4 DELETE  &lt 3 ENTER  &lt 2 SPACE        &kp RIGHT_ALT
             >;
         };
 
         lower {
+            display-name = "Lower";
             bindings = <
 &kp TAB           &kp N1           &kp N2       &kp N3     &kp N4          &kp N5           &kp N6            &kp N7             &kp N8         &kp N9                &kp N0                 &kp BACKSPACE
 &kp LEFT_CONTROL  &kp EXCLAMATION  &kp AT_SIGN  &kp POUND  &kp DOLLAR      &kp PERCENT      &kp CARET         &kp AMPERSAND      &kp ASTERISK   &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp GRAVE
@@ -48,6 +78,7 @@
         };
 
         upper {
+            display-name = "Upper";
             bindings = <
 &kp ESCAPE        &kp F1  &kp F2     &kp F3      &kp F4       &kp F5           &kp F6          &kp F7          &kp F8        &kp F9           &kp F10  &kp DELETE
 &kp LEFT_CONTROL  &none   &none      &none       &none        &kp PRINTSCREEN  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW  &none    &kp F11
@@ -57,20 +88,12 @@
         };
 
         extras {
+            display-name = "Extras";
             bindings = <
 &none              &kp C_PREV  &kp C_NEXT  &kp C_PP  &kp C_VOLUME_DOWN  &kp C_VOL_UP  &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &none            &none            &bt BT_CLR
 &sys_reset         &none       &none       &none     &none              &kp C_BRI_UP  &rgb_ug RGB_BRI  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_SPI  &rgb_ug RGB_EFF  &sys_reset
-&ext_power EP_TOG  &none       &to 0       &to 4     &none              &kp C_BRI_DN  &rgb_ug RGB_BRD  &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_SPD  &rgb_ug RGB_EFR  &rgb_ug RGB_TOG
+&ext_power EP_TOG  &none       &to 0       &to 1     &none              &kp C_BRI_DN  &rgb_ug RGB_BRD  &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_SPD  &rgb_ug RGB_EFR  &rgb_ug RGB_TOG
                                            &none     &none              &none         &none            &none            &none
-            >;
-        };
-
-        colemak {
-            bindings = <
-&tab_esc                &kp Q           &kp W               &kp F                   &kp P             &kp G         &kp J        &kp L              &kp U                &kp Y            &kp SEMICOLON    &kp BACKSPACE
-&kp LCTRL               &hm LEFT_GUI A  &hm LEFT_ALT R      &hm LEFT_CONTROL S      &hm LEFT_SHIFT T  &kp D         &kp H        &hm RIGHT_SHIFT N  &hm RIGHT_CONTROL E  &hm RIGHT_ALT I  &hm RIGHT_GUI O  &kp SQT
-&mt LEFT_SHIFT CAPSLOCK &kp Z           &kp X               &kp C                   &kp V             &kp B         &kp K        &kp M              &kp COMMA            &kp DOT          &kp FSLH         &kp RIGHT_SHIFT
-                                        &kp LEFT_GUI        &lt 2 SPACE             &lt 3 DELETE      &lt 2 ENTER   &lt 1 SPACE  &kp RIGHT_ALT
             >;
         };
     };

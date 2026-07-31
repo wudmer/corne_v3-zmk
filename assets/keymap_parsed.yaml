@@ -43,6 +43,49 @@ layers:
   - {t: ENTER, h: Upper}
   - {t: SPACE, h: Lower}
   - RIGHT ALT
+  Colemak:
+  - '&tab_esc'
+  - Q
+  - W
+  - F
+  - P
+  - G
+  - J
+  - L
+  - U
+  - Y
+  - ;
+  - BACKSPACE
+  - LCTRL
+  - {t: A, h: LEFT GUI}
+  - {t: R, h: LEFT ALT}
+  - {t: S, h: LEFT CONTROL}
+  - {t: T, h: LEFT SHIFT}
+  - D
+  - H
+  - {t: N, h: RIGHT SHIFT}
+  - {t: E, h: RIGHT CONTROL}
+  - {t: I, h: RIGHT ALT}
+  - {t: O, h: RIGHT GUI}
+  - ''''
+  - {t: CAPSLOCK, h: LEFT SHIFT}
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - K
+  - M
+  - ','
+  - .
+  - /
+  - RIGHT SHIFT
+  - LEFT GUI
+  - {t: SPACE, h: Upper}
+  - {t: DELETE, h: Extras}
+  - {t: ENTER, h: Upper}
+  - {t: SPACE, h: Lower}
+  - RIGHT ALT
   Lower:
   - TAB
   - '1'
@@ -172,46 +215,3 @@ layers:
   - ''
   - ''
   - ''
-  Colemak:
-  - '&tab_esc'
-  - Q
-  - W
-  - F
-  - P
-  - G
-  - J
-  - L
-  - U
-  - Y
-  - ;
-  - BACKSPACE
-  - LCTRL
-  - {t: A, h: LEFT GUI}
-  - {t: R, h: LEFT ALT}
-  - {t: S, h: LEFT CONTROL}
-  - {t: T, h: LEFT SHIFT}
-  - D
-  - H
-  - {t: N, h: RIGHT SHIFT}
-  - {t: E, h: RIGHT CONTROL}
-  - {t: I, h: RIGHT ALT}
-  - {t: O, h: RIGHT GUI}
-  - ''''
-  - {t: CAPSLOCK, h: LEFT SHIFT}
-  - Z
-  - X
-  - C
-  - V
-  - B
-  - K
-  - M
-  - ','
-  - .
-  - /
-  - RIGHT SHIFT
-  - LEFT GUI
-  - {t: SPACE, h: Upper}
-  - {t: DELETE, h: Extras}
-  - {t: ENTER, h: Upper}
-  - {t: SPACE, h: Lower}
-  - RIGHT ALT
