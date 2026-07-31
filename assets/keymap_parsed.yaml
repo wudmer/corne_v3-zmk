@@ -1,0 +1,217 @@
+layout: {qmk_keyboard: crkbd/rev1, layout: LAYOUT_split_3x6_3}
+layers:
+  QWERTY:
+  - '&tab_esc'
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - BACKSPACE
+  - LCTRL
+  - {t: A, h: LEFT GUI}
+  - {t: S, h: LEFT ALT}
+  - {t: D, h: LCTRL}
+  - {t: F, h: LEFT SHIFT}
+  - G
+  - H
+  - {t: J, h: RSHIFT}
+  - {t: K, h: RCTRL}
+  - {t: L, h: RIGHT ALT}
+  - {t: ;, h: RGUI}
+  - ''''
+  - {t: CAPSLOCK, h: LEFT SHIFT}
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - N
+  - M
+  - ','
+  - .
+  - /
+  - RIGHT SHIFT
+  - LEFT GUI
+  - {t: SPACE, h: Upper}
+  - {t: DELETE, h: Extras}
+  - {t: ENTER, h: Upper}
+  - {t: SPACE, h: Lower}
+  - RIGHT ALT
+  Lower:
+  - TAB
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '0'
+  - BACKSPACE
+  - LEFT CONTROL
+  - '!'
+  - '@'
+  - '#'
+  - $
+  - '%'
+  - ^
+  - '&'
+  - '*'
+  - (
+  - )
+  - '`'
+  - LEFT SHIFT
+  - +
+  - _
+  - '|'
+  - '{'
+  - '}'
+  - '['
+  - ']'
+  - \
+  - '-'
+  - '='
+  - RIGHT SHIFT
+  - ''
+  - ''
+  - ''
+  - ''
+  - {type: held}
+  - ''
+  Upper:
+  - ESCAPE
+  - F1
+  - F2
+  - F3
+  - F4
+  - F5
+  - F6
+  - F7
+  - F8
+  - F9
+  - F10
+  - DELETE
+  - LEFT CONTROL
+  - ''
+  - ''
+  - ''
+  - ''
+  - PRINTSCREEN
+  - LEFT ARROW
+  - DOWN ARROW
+  - UP ARROW
+  - RIGHT ARROW
+  - ''
+  - F11
+  - LEFT SHIFT
+  - ''
+  - CUT
+  - COPY
+  - PASTE
+  - ''
+  - HOME
+  - PAGE DOWN
+  - PAGE UP
+  - END
+  - ''
+  - F12
+  - ''
+  - {type: held}
+  - ''
+  - ''
+  - ''
+  - ''
+  Extras:
+  - ''
+  - PREV
+  - NEXT
+  - PP
+  - VOLUME DOWN
+  - VOL UP
+  - {t: BT, h: '0'}
+  - {t: BT, h: '1'}
+  - {t: BT, h: '2'}
+  - ''
+  - ''
+  - BT CLR
+  - '&sys_reset'
+  - ''
+  - ''
+  - ''
+  - ''
+  - BRI UP
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '&sys_reset'
+  - {t: ▽, type: trans}
+  - ''
+  - {t: QWERTY, h: toggle}
+  - {t: Colemak, h: toggle}
+  - ''
+  - BRI DN
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ''
+  - ''
+  - {type: held}
+  - ''
+  - ''
+  - ''
+  Colemak:
+  - '&tab_esc'
+  - Q
+  - W
+  - F
+  - P
+  - G
+  - J
+  - L
+  - U
+  - Y
+  - ;
+  - BACKSPACE
+  - LCTRL
+  - {t: A, h: LEFT GUI}
+  - {t: R, h: LEFT ALT}
+  - {t: S, h: LEFT CONTROL}
+  - {t: T, h: LEFT SHIFT}
+  - D
+  - H
+  - {t: N, h: RIGHT SHIFT}
+  - {t: E, h: RIGHT CONTROL}
+  - {t: I, h: RIGHT ALT}
+  - {t: O, h: RIGHT GUI}
+  - ''''
+  - {t: CAPSLOCK, h: LEFT SHIFT}
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - K
+  - M
+  - ','
+  - .
+  - /
+  - RIGHT SHIFT
+  - LEFT GUI
+  - {t: SPACE, h: Upper}
+  - {t: DELETE, h: Extras}
+  - {t: ENTER, h: Upper}
+  - {t: SPACE, h: Lower}
+  - RIGHT ALT
