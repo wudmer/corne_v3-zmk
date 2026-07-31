@@ -186,9 +186,9 @@ layers:
   - ''
   - BT CLR
   - '&sys_reset'
-  - ''
-  - ''
-  - ''
+  - OUT USB
+  - OUT BLE
+  - OUT TOG
   - ''
   - BRI UP
   - {t: ▽, type: trans}
