@@ -2,18 +2,19 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: bwshockley
-      url-base: https://github.com/bwshockley
+    - name: janpfischer
+      url-base: https://github.com/janpfischer
   projects:
-    # ZMK main (Zephyr 4.1). zmk-dongle-screen uses the `zephyr,mipi-dbi-spi`
-    # display binding, which does not exist in Zephyr 3.5, so v0.3 is not an
-    # option here. Keep .github/workflows/build.yml pinned to @main to match.
+    # Pinned to the stable v0.3 release (Zephyr 3.5). zmk-dongle-screen (YADS)
+    # officially targets 0.3.0 and its ST7789 overlay uses the Zephyr 3.5
+    # `sitronix,st7789v` binding, so do not move this to main without checking
+    # the module first. Keep .github/workflows/build.yml pinned to @v0.3 to match.
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      revision: v0.3
       import: app/west.yml
     - name: zmk-dongle-screen
-      remote: bwshockley
+      remote: janpfischer
       revision: main
   self:
     path: config
