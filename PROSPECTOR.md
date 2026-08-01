@@ -145,6 +145,31 @@ Note also that a half **stops sampling its battery entirely once idle**
 (`battery.c` stops the timer on IDLE/SLEEP), so values freeze after
 `ZMK_IDLE_TIMEOUT` (10 min) until you type again.
 
+### A single key does nothing (others in its row and column work)
+
+Not a firmware problem. If other keys share that row *and* that column and work,
+both GPIOs and both traces are proven good, so the fault is isolated to that one
+key's switch, socket or diode.
+
+Narrow it down without tools:
+
+1. Press the key on another layer (e.g. Lower gives a digit). Dead on every layer
+   means the matrix never sees it.
+2. Short the **socket** contacts — this bypasses the switch. Still dead ⇒ the
+   switch is fine.
+3. Short the **PCB pads** (not the socket's internal contacts). If that works but
+   step 2 did not, the socket has a cold joint or lifted pad.
+
+**Diode orientation is the classic cause.** This board is `col2row`, so a diode
+fitted backwards blocks the scan current and the key is permanently dead while
+its row and column keep working. Every diode's cathode stripe must point the same
+way — compare against neighbours rather than trusting the silkscreen. Rotate or
+replace (1N4148W, SOD-123), and sweep the rest of the board while it is open,
+since a mis-placed diode is rarely the only one.
+
+Other candidates, in order: cold joint on a socket leg, dead diode (diode mode
+should read ~0.6 V one way and open the other), hairline trace break.
+
 ### Dongle lags, ignores layer keys, or reboots
 
 LCD redraws starving key/BLE handling, and/or insufficient USB power. Already
