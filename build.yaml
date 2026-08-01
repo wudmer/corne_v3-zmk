@@ -9,7 +9,7 @@ include:
   # --- Prospector dongle = central (holds the keymap + Studio) ---
   - board: seeeduino_xiao_ble
     shield: clover_dongle prospector_adapter
-    snippet: studio-rpc-usb-uart
+    snippet: zmk-usb-logging
 
   # --- Corne halves = peripherals ---
   - board: nice_nano_v2
