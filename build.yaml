@@ -1,26 +1,29 @@
 # This file generates the GitHub Actions matrix.
 #
-# Dongle-as-central setup (Prospector):
-#   - The Prospector dongle (XIAO nRF52840) is the CENTRAL and holds the keymap.
+# Dongle-as-central setup:
+#   - The dongle (XIAO nRF52840 + ST7789 LCD) is the CENTRAL and holds the keymap.
 #   - Both Corne halves are PERIPHERALS (forced via cmake-args).
-#   - Flash settings_reset to ALL three devices first, then the real firmware.
+#   - Display comes from the zmk-dongle-screen module (shield `dongle_screen`).
+#
+# Board targets use Zephyr 4.1 / ZMK-main naming: `<board>[@revision]//<variant>`.
+# `nice_nano_v2` no longer exists as a target - it is nice_nano revision 2.0.0.
 ---
 include:
-  # --- Prospector dongle = central (holds the keymap + Studio) ---
-  - board: seeeduino_xiao_ble
-    shield: clover_dongle prospector_adapter
+  # --- Dongle = central (holds the keymap + Studio + display) ---
+  - board: xiao_ble//zmk
+    shield: clover_dongle dongle_screen
     snippet: studio-rpc-usb-uart
 
   # --- Corne halves = peripherals ---
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0//zmk
     shield: corne_left
     cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0//zmk
     shield: corne_right
     cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
 
-  # --- Reset firmware (flash first, to clear old pairings) ---
-  - board: nice_nano_v2
+  # --- Reset firmware (only needed to clear BLE bonds) ---
+  - board: nice_nano@2.0.0//zmk
     shield: settings_reset
-  - board: seeeduino_xiao_ble
+  - board: xiao_ble//zmk
     shield: settings_reset
